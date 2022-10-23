@@ -64,7 +64,7 @@
 ## Wireframes
 
 [Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="https://github.com/steelemeg/SocialLibrary/blob/main/book_sm_app_mockup.png" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
 
