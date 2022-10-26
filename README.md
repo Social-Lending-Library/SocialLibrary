@@ -62,18 +62,50 @@
 
 **Tab Navigation** (Tab to Screen)
 
-* [fill out your first tab]
-* [fill out your second tab]
-* [fill out your third tab]
+* Friends
+* My Library
+* My Profile
+* Search
 
 **Flow Navigation** (Screen to Screen)
 
-- [list first screen here]
+- Login Screen
+  - => Friends Screen
+
+- Friends Screen
+  - => Friends's Profile Screen
+
+- Friend's Profile Screen
+  - => User's Library Screen
+
+- My Library Screen
+  - => View My Books list Screen
+  - => Book Product Screen
+
+- My Profile Screen
+  - => Edit Profile Screen
+
+- Edit Profile Screen
+  - => Profile Screen (after saving changes to profile)
+
+- Search Screen
+  - => Book Product Screen
+
+- Book Product Screen
+  - => NONE
+
+- Book Lists Screen
+  - => Book List Screen
+
+- Book List Screen
+    - => Book Product Screen
+
+<!-- - [list first screen here]
   - [list screen navigation here]
   - ...
 - [list second screen here]
   - [list screen navigation here]
-  - ...
+  - ... -->
 
 ## Wireframes
 
