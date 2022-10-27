@@ -9,7 +9,7 @@
 
 ### Description
 
-[Description of your app]
+Social Library is an app that helps users keep track of the books they are reading as well as what their friends are reading. The app's search functionality allows a user to look for a book by title and add the book to their list. User can also update their profile and add friends to their list of friends. 
 
 ### App Evaluation
 
