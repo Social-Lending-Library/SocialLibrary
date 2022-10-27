@@ -32,6 +32,7 @@ Social Library is an app that helps users keep track of the books they are readi
 * Existing users can log into their SocialLibrary account with a username and password.
 * Users can search for Books by title, article, or IBSN.
 * Users can create Book Lists of books.
+* Users can see details of a specific Book.
 * Users can add and delete books to Book Lists.
 * Users can add or delete entire Book Lists.
 * Users can browse other people's profiles. 
@@ -43,25 +44,40 @@ Social Library is an app that helps users keep track of the books they are readi
 * Users can have a small about me blurb on their profile and edit the message at any time.
 * Users can choose to display a 'currently reading' book.
 
-* [fill in your required user features here]
-* ...
-
 **Stretch Features**
 
-* [fill in your optional user features here]
-* ...
+* Users can ask to borrow a book from a friend
+* Users can track "checked out" books
+* Users see suggested friends in People Search based on location
 
 ### 2. Screen Archetypes
 
 - Login / Register
   - Users can create an account with SocialLibrary with a username and password.
   - Existing users can log into their SocialLibrary account with a username and password.
-- Book Lists
-  - Users can create Book Lists of books. 
+- My Library
+  - Users can create Book Lists of books.
+  - Users can add and delete books to Book Lists. 
+  - Users can add or delete entire Book Lists.
+  - Users can choose to display a 'currently reading' book.
 - Book Search
   - Users can search for Books by title, article, or IBSN.
-  - ...
-
+  - Users can add and delete books to Book Lists.
+- Book Product 
+  - Users can see details of a specific Book.
+- People Search
+  - Users can browse other people's profiles. 
+- Profile (other users)
+  - Users can view a friend's books and book lists.
+  - Users can request to befriend another user.
+- My Profile
+  - Users can view a list of friends.
+  - Users can choose to display a 'currently reading' book.
+  - Users can have a small about me blurb on their profile and edit the message at any time.
+  - Users can remove a friend from their friends list.
+  - Users can accept or deny a user's friend request.
+- Edit Profile
+  - Users can have a small about me blurb on their profile and edit the message at any time.
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
@@ -104,12 +120,6 @@ Social Library is an app that helps users keep track of the books they are readi
 - Book List Screen
     - => Book Product Screen
 
-<!-- - [list first screen here]
-  - [list screen navigation here]
-  - ...
-- [list second screen here]
-  - [list screen navigation here]
-  - ... -->
 
 ## Mockup & Wireframes
 
@@ -117,6 +127,8 @@ Social Library is an app that helps users keep track of the books they are readi
 
 <img src="https://github.com/steelemeg/SocialLibrary/blob/main/book_sm_app_mockup.png" width=600>
 
-### [BONUS] Digital Wireframes & Mockups
+### [BONUS] Digital Wireframes & Mockups 
+Completed - see above!
 
 ### [BONUS] Interactive Prototype
+Completed - see above!
