@@ -14,12 +14,13 @@ Social Library is an app that helps users keep track of the books they are readi
 ### App Evaluation
 
 [Evaluation of your app across the following attributes]
-- **Category:**
-- **Mobile:**
-- **Story:**
-- **Market:**
-- **Habit:**
-- **Scope:**
+- **Category:** Social sharing
+- **Mobile:** Mobile apps are convenient for any book management task, since it lets the user bring the app to their bookshelf or reading spot and potentially take pictures of their books using the camera. For a social app, the location info is particularly useful since it supports the idea of other users being nearby.
+- **Story:** This app provides a nice intersection between traditional and digital media. It lets people share their favorite stories with their friends and neighbors, supports community building, and has applications to education.
+- **Market:** Marketed towards readers who want to share with other readers in their community. Tangible value in the sense that users can explore new books and meet new friends. 
+- **Habit:** The average user might open the app every week to check their due dates, see what new books their friends might have, or update their own collection. Users would create content by adding and sharing books, and consume it by browning other users' activity. 
+- **Scope:** We reviewed several potential scopes for this app. On the basic build, a user would sign in, have the ability to create and edit their own library, add friends, and browse friend libraries. On the complex side, book borrowing could be fully implemented, users could mark books as read/have reading lists, and more social features could be added. We are working on wireframes but overall the product is fairly well-defined; we have a reasonable shared idea of how it might work.
+
 
 ## Product Spec
 
@@ -28,6 +29,7 @@ Social Library is an app that helps users keep track of the books they are readi
 **Required Features**
 
 * Users can create an account with SocialLibrary with a username and password.
+* Existing users can log into their SocialLibrary account with a username and password.
 * Users can search for Books by title, article, or IBSN.
 * Users can create Book Lists of books.
 * Users can add and delete books to Book Lists.
@@ -51,11 +53,13 @@ Social Library is an app that helps users keep track of the books they are readi
 
 ### 2. Screen Archetypes
 
-- [list first screen here]
-  - [list associated required story here]
-  - ...
-- [list second screen here]
-  - [list associated required story here]
+- Login / Register
+  - Users can create an account with SocialLibrary with a username and password.
+  - Existing users can log into their SocialLibrary account with a username and password.
+- Book Lists
+  - Users can create Book Lists of books. 
+- Book Search
+  - Users can search for Books by title, article, or IBSN.
   - ...
 
 ### 3. Navigation
