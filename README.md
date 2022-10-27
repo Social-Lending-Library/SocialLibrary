@@ -107,7 +107,9 @@
   - [list screen navigation here]
   - ... -->
 
-## Wireframes
+## Mockup & Wireframes
+
+<img src="https://github.com/steelemeg/SocialLibrary/blob/main/interactive_wireframe.gif">
 
 <img src="https://github.com/steelemeg/SocialLibrary/blob/main/book_sm_app_mockup.png" width=600>
 
