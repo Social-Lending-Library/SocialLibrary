@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SocialLibrary</string>
+    <string name="tab1_name">Friends</string>
+    <string name="tab2_name">My Library</string>
+    <string name="tab3_name">Profile</string>
+    <string name="tab4_name">Search</string>
+</resources>

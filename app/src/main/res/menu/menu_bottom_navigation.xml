@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--    Three tabs. All visual stuff can go here. -->
+    <item
+        android:id="@+id/action_friends"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_people_outline_24"
+        android:title="@string/tab1_name"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_my_library"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_menu_library_24"
+        android:title="@string/tab2_name"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_profile_24"
+        android:title="@string/tab3_name"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_search"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/tab4_name"
+        app:showAsAction="ifRoom" />
+
+</menu>
