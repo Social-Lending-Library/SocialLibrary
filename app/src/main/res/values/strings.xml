@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SocialLibrary</string>
+    <string name="tab1_name">Friends</string>
+    <string name="tab2_name">My Library</string>
+    <string name="tab3_name">Profile</string>
+    <string name="tab4_name">Search</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment1">This is the friends tab</string>
+    <string name="hello_blank_fragment2">This is the my library tab</string>
+    <string name="hello_blank_fragment3">This is the profile tab</string>
+    <string name="hello_blank_fragment4">This is the search tab</string>
+
+</resources>
