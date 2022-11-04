@@ -10,4 +10,11 @@
     <string name="hello_blank_fragment3">This is the profile tab</string>
     <string name="hello_blank_fragment4">This is the search tab</string>
 
+
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Paste BOTH strings as required -->
+    <string name="back4app_app_id">VXhma5aIoLQv0v61Lw5izBMII6F5CVT1qSXgE92P</string>
+    <string name="back4app_client_key">F1wX12vF5lQB5VOYYt1mhC51ANpyxslani32D9my</string>
+
 </resources>
