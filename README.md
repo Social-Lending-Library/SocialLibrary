@@ -28,27 +28,27 @@ Social Library is an app that helps users keep track of the books they are readi
 
 **Required Features**
 
-* Users can create an account with SocialLibrary with a username and password.
-* Existing users can log into their SocialLibrary account with a username and password.
-* Users can search for Books by title, article, or IBSN.
-* Users can create Book Lists of books.
-* Users can see details of a specific Book.
-* Users can add and delete books to Book Lists.
-* Users can add or delete entire Book Lists.
-* Users can browse other people's profiles. 
-* Users can request to befriend another user.
-* Users can accept or deny a user's friend request.
-* Users can view a list of friends.
-* Users can view a friend's books and book lists.
-* Users can remove a friend from their friends list.
-* Users can have a small about me blurb on their profile and edit the message at any time.
-* Users can choose to display a 'currently reading' book.
+- [] Users can create an account with SocialLibrary with a username and password.
+- [] Existing users can log into their SocialLibrary account with a username and password.
+- [] Users can search for Books by title, article, or IBSN.
+- [] Users can create Book Lists of books.
+- []Users can see details of a specific Book.
+- [] Users can add and delete books to Book Lists.
+- [] Users can add or delete entire Book Lists.
+- [] Users can browse other people's profiles. 
+- [] Users can request to befriend another user.
+- [] Users can accept or deny a user's friend request.
+- [] Users can view a list of friends.
+- [] Users can view a friend's books and book lists.
+- [] Users can remove a friend from their friends list.
+- [] Users can have a small about me blurb on their profile and edit the message at any time.
+- [] Users can choose to display a 'currently reading' book.
 
 **Stretch Features**
 
-* Users can ask to borrow a book from a friend
-* Users can track "checked out" books
-* Users see suggested friends in People Search based on location
+- [] Users can ask to borrow a book from a friend
+- [] Users can track "checked out" books
+- [] Users see suggested friends in People Search based on location
 
 ### 2. Screen Archetypes
 
