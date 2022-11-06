@@ -1,7 +1,12 @@
 package com.example.sociallibrary
 
+import android.support.annotation.Keep
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class Book (val title:String,
+@Keep
+@Serializable
+data class Book (val title:String,
            val author:String,
            val link:String,
            val image:String,

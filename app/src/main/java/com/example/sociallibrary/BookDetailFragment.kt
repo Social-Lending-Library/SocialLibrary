@@ -37,14 +37,13 @@ class BookDetailFragment (book:Book): Fragment()  {
         savedInstanceState: Bundle?
     ): View? {
         Log.v("bookDetails", "onCreateView")
-
         val view = inflater.inflate(R.layout.fragment_book_detail, container, false)
         val bundle = arguments
         val title = bundle?.getString("title")
         val author = bundle?.getString("author")
         val description = bundle?.getString("description")
         val image = bundle?.getString("image")
-        Log.v("bookDetails", title.toString())
+        Log.v("bookDetailsBundle", bundle.toString())
         val titleTextView = view.findViewById<TextView>(R.id.book_title_detail)
         val authorTextView = view.findViewById<TextView>(R.id.book_author_detail)
         val descriptionTextView = view.findViewById<TextView>(R.id.book_description_detail)
@@ -59,16 +58,6 @@ class BookDetailFragment (book:Book): Fragment()  {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BookDetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
         fun newInstance(book:Book) =
             BookDetailFragment(book).apply {
                 arguments = Bundle().apply {

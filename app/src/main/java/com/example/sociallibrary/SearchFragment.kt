@@ -195,7 +195,7 @@ class SearchFragment : Fragment() {
 
     fun onItemClick(book: Book) {
         Toast.makeText(context, "test: " + book.title, Toast.LENGTH_LONG).show()
-        val bookDetail = BookDetailFragment(book)
+        val bookDetail = BookDetailFragment.newInstance(book)
 
         val transaction = activity?.supportFragmentManager?.beginTransaction()
         if (transaction != null) {
