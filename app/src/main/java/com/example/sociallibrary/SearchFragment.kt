@@ -68,7 +68,7 @@ class SearchFragment : Fragment() {
             // Create and set up an AsyncHTTPClient() here
             val client = AsyncHttpClient()
             val params = RequestParams()
-            params["api-key"] = getString(R.string.books_key)
+            //params["api-key"] = getString(R.string.books_key)
             params["q"]= searchParams.toString()
             // Using the client, perform the HTTP request
             client[
