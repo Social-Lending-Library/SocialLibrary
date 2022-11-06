@@ -36,6 +36,11 @@ class SearchFragment : Fragment() {
     private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        // Gets userObjectId from MainActivity into this Fragment
+        val userObjectId = requireArguments().getString("userObjectId", "None")
+        Log.i("Daniel", "The Search Fragment has userObjectID " + userObjectId.toString())
+
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)

@@ -36,9 +36,15 @@ class CreateAccount : AppCompatActivity() {
                 user.setUsername(username)
                 user.setPassword(password)
 
+
+
                 user.signUpInBackground(SignUpCallback() {
                     if (it == null) {
                         val intent = Intent(this, MainActivity::class.java)
+
+                        // Pass in userObjectId to MainActivity
+                        intent.putExtra("userObjectId", user.objectId.toString())
+
                         startActivity(intent)
                         finish()
                     } else {

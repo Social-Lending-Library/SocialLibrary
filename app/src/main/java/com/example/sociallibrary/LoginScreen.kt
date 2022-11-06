@@ -43,6 +43,10 @@ class LoginScreen : AppCompatActivity() {
 
                     if (parseUser != null) {
                         val intent = Intent(this, MainActivity::class.java)
+
+                        // Pass in userObjectId to MainActivity
+                        intent.putExtra("userObjectId", parseUser.objectId.toString())
+
                         startActivity(intent)
                         finish()
                     }
