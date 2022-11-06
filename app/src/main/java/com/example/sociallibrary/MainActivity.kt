@@ -8,16 +8,28 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        // Gets userObjectId from LoginScreen into this MainActivity screen
+        val userObjectId = getIntent().getStringExtra("userObjectId") as String
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val fragmentManager: FragmentManager = supportFragmentManager
 
-        // define your fragments here
+        // define your fragments here and add arguments to fragments.
+        val args = Bundle()
+        args.putString("userObjectId", userObjectId)
+
         val fragment1: Fragment = FriendsFragment()
         val fragment2: Fragment = MyLibraryFragment()
         val fragment3: Fragment = ProfileFragment()
         val fragment4: Fragment = SearchFragment()
+
+        fragment1!!.arguments = args
+        fragment2!!.arguments = args
+        fragment3!!.arguments = args
+        fragment4!!.arguments = args
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 

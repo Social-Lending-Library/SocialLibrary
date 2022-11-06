@@ -1,6 +1,7 @@
 package com.example.sociallibrary
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,11 @@ import android.view.ViewGroup
 class FriendsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        // Gets userObjectId from MainActivity into this Fragment
+        val userObjectId = requireArguments().getString("userObjectId", "None")
+        Log.i("Daniel", "The Friends Fragment has userObjectID " + userObjectId.toString())
+
         super.onCreate(savedInstanceState)
     }
 
