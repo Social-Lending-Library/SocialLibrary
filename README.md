@@ -28,11 +28,11 @@ Social Library is an app that helps users keep track of the books they are readi
 
 **Required Features**
 
-- [] Users can create an account with SocialLibrary with a username and password.
-- [] Existing users can log into their SocialLibrary account with a username and password.
-- [] Users can search for Books by title, article, or IBSN.
+- [X] Users can create an account with SocialLibrary with a username and password.
+- [X] Existing users can log into their SocialLibrary account with a username and password.
+- [X] Users can search for Books by title, article, or IBSN.
 - [] Users can create Book Lists of books.
-- []Users can see details of a specific Book.
+- [X]Users can see details of a specific Book.
 - [] Users can add and delete books to Book Lists.
 - [] Users can add or delete entire Book Lists.
 - [] Users can browse other people's profiles. 
@@ -49,6 +49,15 @@ Social Library is an app that helps users keep track of the books they are readi
 - [] Users can ask to borrow a book from a friend
 - [] Users can track "checked out" books
 - [] Users see suggested friends in People Search based on location
+
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='library2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='library3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/)
 
 ### 2. Screen Archetypes
 

@@ -22,7 +22,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [BookDetailFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class BookDetailFragment (book:Book): Fragment()  {
+class BookDetailFragment (): Fragment()  {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -50,16 +50,17 @@ class BookDetailFragment (book:Book): Fragment()  {
         val imageView = view.findViewById<ImageView>(R.id.book_image_detail)
 
         titleTextView.text = title
-        authorTextView.text = author.toString()
-        descriptionTextView.text = description.toString()
+        authorTextView.text = author
+        descriptionTextView.text = description
         Picasso.get().load(image).into(imageView);
         // Inflate the layout for this fragment
         return view
     }
 
     companion object {
+        @JvmStatic
         fun newInstance(book:Book) =
-            BookDetailFragment(book).apply {
+            BookDetailFragment().apply {
                 arguments = Bundle().apply {
                     putString("title", book.title)
                     putString("author", book.author)
