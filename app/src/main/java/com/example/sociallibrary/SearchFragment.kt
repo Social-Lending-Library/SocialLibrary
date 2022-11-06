@@ -1,24 +1,24 @@
 package com.example.sociallibrary
 
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.RequestParams
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
-
 import okhttp3.Headers
 import org.json.JSONArray
 import org.json.JSONObject
-import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -54,7 +54,11 @@ class SearchFragment : Fragment() {
         val searchView = view.findViewById<EditText>(R.id.etSearchBooks)
 
         recyclerView.layoutManager = GridLayoutManager(context, 1)
-        searchButton.setOnClickListener {updateAdapter(recyclerView, searchView.text.toString())}
+        searchButton.setOnClickListener {
+            // Hide the keyboard
+            val imm = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(requireView().windowToken, 0)
+            updateAdapter(recyclerView, searchView.text.toString())}
         return view
     }
 
@@ -90,7 +94,7 @@ class SearchFragment : Fragment() {
 
                             Log.v("json", resultsJSON.toString())
                             // Create a model using gson
-                            val bookResults:ArrayList<BookSearchResult>? = fromJson(booksRawJSON)
+                            val bookResults:ArrayList<Book>? = fromJson(booksRawJSON)
                             //val gson = Gson()
                             //val arrayBooks = object : TypeToken<List<BookSearchResult>>() {}.type
                             //val models : List<BookSearchResult> = gson.fromJson(booksRawJSON, arrayBooks)
@@ -142,9 +146,9 @@ class SearchFragment : Fragment() {
     }
 
 
-    public fun fromJson(jsonArray: JSONArray): ArrayList<BookSearchResult>? {
+    public fun fromJson(jsonArray: JSONArray): ArrayList<Book>? {
         var booksJson: JSONObject?
-        val parsedBooks: ArrayList<BookSearchResult> = ArrayList<BookSearchResult>(jsonArray.length())
+        val parsedBooks: ArrayList<Book> = ArrayList<Book>(jsonArray.length())
         // Process each result in json array, decode and convert to book object
         for (i in 0 until jsonArray.length()) {
             booksJson = try {
@@ -183,13 +187,24 @@ class SearchFragment : Fragment() {
             Log.v("books title", title.toString())
             Log.v("books author", author)
             Log.v("books image", image)
-            val newBook:BookSearchResult = BookSearchResult(title, author, link, image, description)
+            val newBook:Book = Book(title, author, link, image, description)
             parsedBooks.add(newBook)
         }
         return parsedBooks
     }
 
-    fun onItemClick(book: BookSearchResult) {
+    fun onItemClick(book: Book) {
         Toast.makeText(context, "test: " + book.title, Toast.LENGTH_LONG).show()
+        val bookDetail = BookDetailFragment.newInstance(book)
+
+        val transaction = activity?.supportFragmentManager?.beginTransaction()
+        if (transaction != null) {
+            Log.v("bookDetails", "replacing")
+            transaction.replace(R.id.rlContainer, BookDetailFragment(book))
+            transaction.disallowAddToBackStack()
+            transaction.commit()
+        }
+
+
     }
 }

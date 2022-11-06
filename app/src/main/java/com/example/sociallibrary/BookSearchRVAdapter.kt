@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.sociallibrary.R.id
 
+const val BOOK_DETAILS = "BOOK_DETAILS"
+
 class BookSearchRVAdapter(
-    private val books: ArrayList<BookSearchResult>,
+    private val books: ArrayList<Book>,
     private val mListener: SearchFragment
     )
         : RecyclerView.Adapter<BookSearchRVAdapter.BookViewHolder>()
@@ -27,7 +29,7 @@ class BookSearchRVAdapter(
          * (Yes, the same ones as in the XML layout files!)
          */
         inner class BookViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-            var mItem: BookSearchResult? = null
+            var mItem: Book? = null
             val mBookTitle: TextView = mView.findViewById<View>(id.book_title) as TextView
             val mBookAuthor: TextView = mView.findViewById<View>(id.book_author) as TextView
             val mBookImage: ImageView = mView.findViewById<View>(id.book_image) as ImageView
@@ -65,5 +67,6 @@ class BookSearchRVAdapter(
         override fun getItemCount(): Int {
             return books.size
         }
+
 
 }
