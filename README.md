@@ -28,11 +28,11 @@ Social Library is an app that helps users keep track of the books they are readi
 
 **Required Features**
 
-- [] Users can create an account with SocialLibrary with a username and password.
-- [] Existing users can log into their SocialLibrary account with a username and password.
-- [] Users can search for Books by title, article, or IBSN.
+- [X] Users can create an account with SocialLibrary with a username and password.
+- [X] Existing users can log into their SocialLibrary account with a username and password.
+- [X] Users can search for Books by title, article, or IBSN.
 - [] Users can create Book Lists of books.
-- []Users can see details of a specific Book.
+- [X]Users can see details of a specific Book.
 - [] Users can add and delete books to Book Lists.
 - [] Users can add or delete entire Book Lists.
 - [] Users can browse other people's profiles. 
