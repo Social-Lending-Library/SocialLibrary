@@ -50,7 +50,7 @@ class BookDetailFragment (book:Book): Fragment()  {
         val descriptionTextView = view.findViewById<TextView>(R.id.book_description_detail)
         val imageView = view.findViewById<ImageView>(R.id.book_image_detail)
 
-        titleTextView.text = title.toString()
+        titleTextView.text = title
         authorTextView.text = author.toString()
         descriptionTextView.text = description.toString()
         Picasso.get().load(image).into(imageView);
