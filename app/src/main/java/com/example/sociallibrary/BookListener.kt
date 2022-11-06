@@ -1,7 +1,7 @@
 package com.example.sociallibrary
 
 interface OnListFragmentInteractionListener {
-    fun onItemClick(item: BookSearchResult)
+    fun onItemClick(item: Book)
 }
 
 class BookListener {

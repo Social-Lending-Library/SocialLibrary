@@ -38,4 +38,11 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.selectedItemId = R.id.action_friends
 
     }
+
+    fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.apply { replace(R.id.rlContainer, fragment) }
+        fragmentTransaction.commit()
+    }
 }
