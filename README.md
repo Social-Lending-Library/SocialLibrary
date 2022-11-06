@@ -50,6 +50,15 @@ Social Library is an app that helps users keep track of the books they are readi
 - [] Users can track "checked out" books
 - [] Users see suggested friends in People Search based on location
 
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='library2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='library3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/)
+
 ### 2. Screen Archetypes
 
 - Login / Register
