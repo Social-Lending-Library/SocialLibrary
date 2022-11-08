@@ -114,8 +114,8 @@ class BookDetailFragment (): Fragment()  {
                         selectedList = listResults[0].listObjectId
                         for (i in listResults.indices) {
                             Log.v("dialog test list name", listResults[i].ListName.toString())
-                            if (listResults[i].ListName.equals(listResults[0].listObjectId)){
-                            // Pre check this list
+                            if (listResults[i].ListName.equals(listResults[0].ListName)){
+                            // Pre check this list, and persistence happens!
                                 checked = i
                             }
                         }
