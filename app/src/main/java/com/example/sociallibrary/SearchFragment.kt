@@ -168,6 +168,7 @@ class SearchFragment : Fragment() {
             val link = booksJson?.get("selfLink") as String
             val info:JSONObject = booksJson?.get("volumeInfo") as JSONObject
             val title:String = info["title"] as String
+            val bookObjectId = ""
             var author = ""
             try{
                 val test:JSONArray = info["authors"] as JSONArray
@@ -189,22 +190,22 @@ class SearchFragment : Fragment() {
                 continue
             }
 
-            val newBook:Book = Book(title, author, link, image, description)
+            val newBook:Book = Book(bookObjectId, title, author, link, image, description)
             parsedBooks.add(newBook)
         }
         return parsedBooks
     }
 
     fun onItemClick(book: Book) {
-        Toast.makeText(context, "test: " + book.title, Toast.LENGTH_LONG).show()
+        //Toast.makeText(context, "test: " + book.title, Toast.LENGTH_LONG).show()
 
         val bundle = arguments
         val user = bundle?.getString("userObjectId").toString()
-        val bookDetail = BookDetailFragment.newInstance(book, user)
+        val bookDetail = BookDetailFragment.newInstance(book, user, "search")
         val transaction = activity?.supportFragmentManager?.beginTransaction()
         if (transaction != null) {
-            transaction.replace(R.id.rlContainer, BookDetailFragment.newInstance(book, user))
-            transaction.disallowAddToBackStack()
+            transaction.replace(R.id.rlContainer, BookDetailFragment.newInstance(book, user, "search"))
+            transaction.addToBackStack("searchFragment")
             transaction.commit()
         }
 
