@@ -6,7 +6,7 @@
     <string name="tab4_name">Search</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment1">This is the friends tab</string>
-    <string name="hello_blank_fragment2">This is the my library tab</string>
+    <string name="my_library">My Library</string>
     <string name="hello_blank_fragment3">This is the profile tab</string>
     <string name="hello_blank_fragment4">This is the search tab</string>
     <string name="books_key">AIzaSyDk4HXbQKwUc09SVrEaTExb4ARjvMda4U4</string>
@@ -18,5 +18,6 @@
     <string name="back4app_client_key">F1wX12vF5lQB5VOYYt1mhC51ANpyxslani32D9my</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_books">All My Books</string>
 
 </resources>

@@ -36,14 +36,15 @@ class BookDetailFragment (): Fragment()  {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.v("bookDetails", "onCreateView")
         val view = inflater.inflate(R.layout.fragment_book_detail, container, false)
         val bundle = arguments
         val title = bundle?.getString("title")
         val author = bundle?.getString("author")
         val description = bundle?.getString("description")
         val image = bundle?.getString("image")
-        Log.v("bookDetailsBundle", bundle.toString())
+        val user = bundle?.getString("userObjectId")
+        // Need the user's key to support reading list additions
+        Log.v("book User from result", user.toString())
         val titleTextView = view.findViewById<TextView>(R.id.book_title_detail)
         val authorTextView = view.findViewById<TextView>(R.id.book_author_detail)
         val descriptionTextView = view.findViewById<TextView>(R.id.book_description_detail)
@@ -59,7 +60,7 @@ class BookDetailFragment (): Fragment()  {
 
     companion object {
         @JvmStatic
-        fun newInstance(book:Book) =
+        fun newInstance(book:Book, user:String) =
             BookDetailFragment().apply {
                 arguments = Bundle().apply {
                     putString("title", book.title)
@@ -67,6 +68,7 @@ class BookDetailFragment (): Fragment()  {
                     putString("image", book.image)
                     putString("link", book.link)
                     putString("description", book.description)
+                    putString("userObjectId", user)
 
                 }
             }

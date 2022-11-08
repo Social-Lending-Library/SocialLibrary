@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MyLibraryFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
+        android:id="@+id/tvMyLibrary"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment2" />
+        android:layout_height="36dp"
+        android:layout_gravity="top"
+        android:layout_margin="4dp"
+        android:textSize="24dp"
+        android:text="@string/my_library" />
+
+    <Button
+        android:id="@+id/btnMyLists"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tvMyLibrary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="60dp"
+        android:text="View My Book Lists"
+        android:textSize="16dp"
+        />
+
+    <TextView
+        android:id="@+id/tvAllBooks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnMyLists"
+        android:layout_marginTop="124dp"
+        android:textSize="20dp"
+        android:text="@string/all_books" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMyBooks"
+        android:name="com.example.sociallibrary.BookSearchFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="164dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAllBooks"
+        app:layoutManager="LinearLayoutManager"
+        tools:context=".MyLibraryFragment"
+        tools:listitem="@layout/fragment_search_book" />
 
 </FrameLayout>
