@@ -200,10 +200,10 @@ class SearchFragment : Fragment() {
 
         val bundle = arguments
         val user = bundle?.getString("userObjectId").toString()
-        val bookDetail = BookDetailFragment.newInstance(book, user)
+        val bookDetail = BookDetailFragment.newInstance(book, user, "search")
         val transaction = activity?.supportFragmentManager?.beginTransaction()
         if (transaction != null) {
-            transaction.replace(R.id.rlContainer, BookDetailFragment.newInstance(book, user))
+            transaction.replace(R.id.rlContainer, BookDetailFragment.newInstance(book, user, "search"))
             transaction.addToBackStack("searchFragment")
             transaction.commit()
         }

@@ -44,12 +44,25 @@ class BookDetailFragment (): Fragment()  {
         val description = bundle?.getString("description")
         val image = bundle?.getString("image")
         val user = bundle?.getString("userObjectId")
+        val source = bundle?.getString("source")
         // Need the user's key to support reading list additions
         Log.v("book User from result", user.toString())
         val titleTextView = view.findViewById<TextView>(R.id.book_title_detail)
         val authorTextView = view.findViewById<TextView>(R.id.book_author_detail)
         val descriptionTextView = view.findViewById<TextView>(R.id.book_description_detail)
         val imageView = view.findViewById<ImageView>(R.id.book_image_detail)
+
+        val addToLibraryButton: Button = view.findViewById<View>(R.id.btnAddToLibrary) as Button
+        val setReadingButton: Button = view.findViewById<View>(R.id.btnCurrentlyReading) as Button
+        val addToList: Button = view.findViewById<View>(R.id.btnAddToList) as Button
+
+        if (source.equals("library")){
+            addToLibraryButton.visibility = View.GONE
+        }
+        else if (source.equals("search")){
+            setReadingButton.visibility = View.GONE
+            addToList.visibility = View.GONE
+        }
 
         titleTextView.text = title
         authorTextView.text = author
@@ -65,13 +78,18 @@ class BookDetailFragment (): Fragment()  {
                 fragmentManager.popBackStack()
             }
         }
+
+        val addButton = view.findViewById<Button>(R.id.btnAddToLibrary)
+        addButton.setOnClickListener{
+
+        }
         // Inflate the layout for this fragment
         return view
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(book:Book, user:String) =
+        fun newInstance(book:Book, user:String, source:String) =
             BookDetailFragment().apply {
                 arguments = Bundle().apply {
                     putString("title", book.title)
@@ -80,6 +98,7 @@ class BookDetailFragment (): Fragment()  {
                     putString("link", book.link)
                     putString("description", book.description)
                     putString("userObjectId", user)
+                    putString("source", source)
 
                 }
             }
