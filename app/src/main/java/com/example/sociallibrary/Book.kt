@@ -6,6 +6,7 @@ import kotlinx.serialization.Serializable
 @Keep
 @Serializable
 data class Book(
+    val bookObjectId:String,
     val title:String,
     val author:String,
     val link:String,

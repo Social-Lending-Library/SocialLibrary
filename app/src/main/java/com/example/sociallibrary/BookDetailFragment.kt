@@ -1,16 +1,18 @@
 package com.example.sociallibrary
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
-import com.example.sociallibrary.R.id
+import androidx.fragment.app.Fragment
+import com.parse.ParseException
+import com.parse.ParseObject
+import com.parse.ParseQuery
 import com.squareup.picasso.Picasso
 
 // TODO: Rename parameter arguments, choose names that match
@@ -54,14 +56,16 @@ class BookDetailFragment (): Fragment()  {
 
         val addToLibraryButton: Button = view.findViewById<View>(R.id.btnAddToLibrary) as Button
         val setReadingButton: Button = view.findViewById<View>(R.id.btnCurrentlyReading) as Button
-        val addToList: Button = view.findViewById<View>(R.id.btnAddToList) as Button
+        val btnAddToList: Button = view.findViewById<View>(R.id.btnReadingLists) as Button
+        val libraryFlag: TextView = view.findViewById<TextView>(R.id.tvLibraryFlag)
 
         if (source.equals("library")){
-            addToLibraryButton.visibility = View.GONE
+            btnAddToList.visibility = View.VISIBLE
+            setReadingButton.visibility = View.VISIBLE
+            libraryFlag.visibility = View.VISIBLE
         }
         else if (source.equals("search")){
-            setReadingButton.visibility = View.GONE
-            addToList.visibility = View.GONE
+            addToLibraryButton.visibility = View.VISIBLE
         }
 
         titleTextView.text = title
@@ -74,13 +78,77 @@ class BookDetailFragment (): Fragment()  {
 
             val fragmentManager = activity?.supportFragmentManager
             if (fragmentManager != null) {
-                Log.v("button test", "in listener")
                 fragmentManager.popBackStack()
             }
         }
 
-        val addButton = view.findViewById<Button>(R.id.btnAddToLibrary)
-        addButton.setOnClickListener{
+        btnAddToList.setOnClickListener{
+            val bundle = arguments
+            val user = bundle?.getString("userObjectId")
+            // Get the user's reading lists
+            // Retrieves all book objects
+            val getLists = ParseQuery<ParseObject>("BookList")
+            val getThisBookList = ParseQuery<ParseObject>("Book")
+            val bookObjectId = bundle?.getString("bookObjectId")
+            // Filters to lists owned by the current user
+            getLists.whereEqualTo("ownerObjectId", user)
+            // Filter to just this book
+            getThisBookList.whereEqualTo("Title", title)
+            getThisBookList.whereEqualTo("ownerObjectId", user)
+
+            try {
+                val listList = getLists.find()
+                val currentBook = getThisBookList.find()
+                // Now we have a list of key value pairs. Turn these into BookLists
+                val listResults:ArrayList<BookList>? = bookListFromParseObject(listList)
+
+                val alertDialog = AlertDialog.Builder(requireContext())
+                var listNames = listResults?.map{it.ListName}?.toTypedArray()
+                alertDialog.setTitle("Select a list for this book")
+                var selectedList:String?
+                if (listResults != null) {
+                    var checked = -1
+                    var newChoice = -1
+
+                    if (listResults.size > 0) {
+                        selectedList = listResults[0].listObjectId
+                        for (i in listResults.indices) {
+                            Log.v("dialog test list name", listResults[i].ListName.toString())
+                            if (listResults[i].ListName.equals(listResults[0].listObjectId)){
+                            // Pre check this list
+                                checked = i
+                            }
+                        }
+
+
+                        alertDialog.setSingleChoiceItems(listNames, checked) { dialog, which ->
+                            newChoice = which
+                            // TODO Really icky here, back4app isn't giving me the object id of the lists
+                            // in the query results. So a true FK is not possible. Doing more
+                            // research but hacky solution of using name. So, uh, don't duplicate
+                            // list names on a single user.
+                            Log.v("dialog update target", currentBook[0].keySet().toString())
+                            Log.v("dialog update source", listResults[newChoice].ListName.toString())
+                            currentBook[0].put("listObjectId", listResults[newChoice].ListName.toString())
+                            currentBook[0].saveInBackground()
+                            dialog.dismiss()
+                        }
+                    }
+
+
+                    else{
+                        alertDialog.setMessage("No lists! Create some lists in your Library.")
+                        alertDialog.setPositiveButton("OK"){ _,_ -> }
+                    }
+                }
+                val listAlert = alertDialog.create()
+                listAlert.show()
+
+
+                //recyclerView.adapter = bookResults?.let { BookLibraryRVAdapter(it, this@MyLibraryFragment) }
+            } catch (e: ParseException){
+                Log.v("OH NO" , "SUPER BAD")
+            }
 
         }
         // Inflate the layout for this fragment
@@ -92,6 +160,7 @@ class BookDetailFragment (): Fragment()  {
         fun newInstance(book:Book, user:String, source:String) =
             BookDetailFragment().apply {
                 arguments = Bundle().apply {
+                    putString("bookObjectId", book.bookObjectId)
                     putString("title", book.title)
                     putString("author", book.author)
                     putString("image", book.image)
@@ -103,4 +172,20 @@ class BookDetailFragment (): Fragment()  {
                 }
             }
     }
+
+    public fun bookListFromParseObject(listList: List<ParseObject>): ArrayList<BookList>? {
+        val parsedLists: ArrayList<BookList> = ArrayList<BookList>(listList.size)
+        // Process each result in json array, decode and convert to book object
+        for (i in listList.indices) {
+            val listParseObject = listList[i]
+            val listObjectId = listParseObject.get("objectId").toString()
+            val ownerId = listParseObject.get("ownerObjectId").toString()
+            val listName = listParseObject.get("ListName").toString()
+            val newList:BookList = BookList(listObjectId, ownerId, listName)
+            parsedLists.add(newList)
+        }
+        return parsedLists
+    }
 }
+
+

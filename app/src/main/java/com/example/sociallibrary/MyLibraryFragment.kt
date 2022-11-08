@@ -80,11 +80,8 @@ class MyLibraryFragment : Fragment() {
 
         try {
             val booksList = getBooks.find()
-            Log.v("book testing with list", booksList[0].get("Author").toString())
             // Now we have a list of key value pairs. Turn these into Books.
-            for (bookData in booksList) {
 
-            }
             val bookResults:ArrayList<Book>? = fromParseObject(booksList)
             recyclerView.adapter = bookResults?.let { BookLibraryRVAdapter(it, this@MyLibraryFragment) }
         } catch (e: ParseException){
@@ -100,6 +97,7 @@ class MyLibraryFragment : Fragment() {
         // Process each result in json array, decode and convert to book object
         for (i in bookList.indices) {
             val booksParseObject = bookList[i]
+            val bookObjectId = booksParseObject.get("objectId").toString()
             val title = booksParseObject.get("Title").toString()
             var author = booksParseObject.get("Author").toString()
             var checkedOut = booksParseObject.get("checkedOut")
@@ -110,7 +108,7 @@ class MyLibraryFragment : Fragment() {
             Log.v("books title", title.toString())
             Log.v("books author", author.toString())
             Log.v("books image", image.toString())
-            val newBook:Book = Book(title, author, "", image, description, checkedOut as Boolean)
+            val newBook:Book = Book(bookObjectId, title, author, "", image, description, checkedOut as Boolean)
             parsedBooks.add(newBook)
         }
         return parsedBooks
@@ -137,7 +135,7 @@ class MyLibraryFragment : Fragment() {
     }
 
     fun onItemClick(book: Book) {
-        Toast.makeText(context, "test: " + book.title, Toast.LENGTH_LONG).show()
+        // Toast.makeText(context, "test: " + book.title, Toast.LENGTH_LONG).show()
 
         val bundle = arguments
         val user = bundle?.getString("userObjectId").toString()
