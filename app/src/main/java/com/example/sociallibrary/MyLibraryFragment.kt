@@ -10,12 +10,16 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.parse.Parse
 import com.parse.ParseObject
 import com.parse.ParseException
+import com.parse.ParseClassName
 import com.parse.ParseQuery
 import com.parse.ParseUser
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -54,6 +58,23 @@ class MyLibraryFragment : Fragment() {
         val recyclerView = view.findViewById<View>(R.id.rvMyBooks) as RecyclerView
         val searchButton = view.findViewById<Button>(R.id.btnMyLists)
         recyclerView.layoutManager = GridLayoutManager(context, 1)
+
+        // TODO temp for query testing
+        val bundle = arguments
+        val user = bundle?.getString("userObjectId")
+        // Retrieves all book objects
+        val getBooks = ParseQuery<ParseObject>("Book")
+        // Filters to just books owned by the current user
+        getBooks.whereEqualTo("ownerObjectId", user)
+        getBooks.findInBackground(
+        ) { obj, e ->
+            if (e == null) {
+                Log.v("book testing", obj.get(0).get("Author").toString())
+            } else {
+                Log.v("OH NO", "UGH")
+            }
+        }
+
         return view
     }
 
@@ -89,3 +110,4 @@ class MyLibraryFragment : Fragment() {
             }
     }
 }
+
