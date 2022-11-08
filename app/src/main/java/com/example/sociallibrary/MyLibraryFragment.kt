@@ -1,24 +1,18 @@
 package com.example.sociallibrary
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.parse.Parse
 import com.parse.ParseObject
 import com.parse.ParseException
-import com.parse.ParseClassName
 import com.parse.ParseQuery
-import com.parse.ParseUser
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -57,38 +51,70 @@ class MyLibraryFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_my_library, container, false)
         val recyclerView = view.findViewById<View>(R.id.rvMyBooks) as RecyclerView
         val searchButton = view.findViewById<Button>(R.id.btnMyLists)
-        recyclerView.layoutManager = GridLayoutManager(context, 1)
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
 
-        // TODO temp for query testing
-        val bundle = arguments
-        val user = bundle?.getString("userObjectId")
-        // Retrieves all book objects
-        val getBooks = ParseQuery<ParseObject>("Book")
-        // Filters to just books owned by the current user
-        getBooks.whereEqualTo("ownerObjectId", user)
-        getBooks.findInBackground(
-        ) { obj, e ->
-            if (e == null) {
-                Log.v("book testing", obj.get(0).get("Author").toString())
-            } else {
-                Log.v("OH NO", "UGH")
-            }
-        }
+        updateAdapter(recyclerView)
 
         return view
     }
 
-    private fun updateAdapter(recyclerView: RecyclerView, searchParams:String) {
-        Log.v("book SEARCH PARAMS", searchParams.toString())
+    private fun updateAdapter(recyclerView: RecyclerView) {
         val bundle = arguments
         val user = bundle?.getString("userObjectId")
-        val query = ParseQuery<ParseObject>("Book")
-        query.whereEqualTo("ownerObjectId", user.toString())
-        Log.v("book query", query.toString())
+        var bookResults:MutableList<Book> = ArrayList()
+        // Retrieves all book objects
+        val getBooks = ParseQuery<ParseObject>("Book")
+        // Filters to just books owned by the current user
+        getBooks.whereEqualTo("ownerObjectId", user)
+        // async method
+        /*getBooks.findInBackground(
+        ) { obj, e ->
+            if (e == null) {
+                // TODO write adapter, plug the results in. MutableList
+                Log.v("book testing", obj.get(0).get("Author").toString())
+            } else {
+                Log.v("OH NO", "UGH")
+            }
+        }*/
+        // sync method
 
+        try {
+            val booksList = getBooks.find()
+            Log.v("book testing with list", booksList[0].get("Author").toString())
+            // Now we have a list of key value pairs. Turn these into Books.
+            for (bookData in booksList) {
+
+            }
+            val bookResults:ArrayList<Book>? = fromParseObject(booksList)
+            recyclerView.adapter = bookResults?.let { BookLibraryRVAdapter(it, this@MyLibraryFragment) }
+        } catch (e: ParseException){
+            Log.v("OH NO" , "SUPER BAD")
         }
 
 
+
+        }
+
+    public fun fromParseObject(bookList: List<ParseObject>): ArrayList<Book>? {
+        val parsedBooks: ArrayList<Book> = ArrayList<Book>(bookList.size)
+        // Process each result in json array, decode and convert to book object
+        for (i in bookList.indices) {
+            val booksParseObject = bookList[i]
+            val title = booksParseObject.get("Title").toString()
+            var author = booksParseObject.get("Author").toString()
+            var checkedOut = booksParseObject.get("checkedOut")
+            var image = booksParseObject.get("imageUrl").toString()
+            val description = booksParseObject.get("Description").toString()
+
+
+            Log.v("books title", title.toString())
+            Log.v("books author", author.toString())
+            Log.v("books image", image.toString())
+            val newBook:Book = Book(title, author, "", image, description, checkedOut as Boolean)
+            parsedBooks.add(newBook)
+        }
+        return parsedBooks
+    }
 
     companion object {
         /**
@@ -108,6 +134,22 @@ class MyLibraryFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    fun onItemClick(book: Book) {
+        Toast.makeText(context, "test: " + book.title, Toast.LENGTH_LONG).show()
+
+        val bundle = arguments
+        val user = bundle?.getString("userObjectId").toString()
+        val bookDetail = BookDetailFragment.newInstance(book, user)
+        val transaction = activity?.supportFragmentManager?.beginTransaction()
+        if (transaction != null) {
+            transaction.replace(R.id.rlContainer, BookDetailFragment.newInstance(book, user))
+            transaction.disallowAddToBackStack()
+            transaction.commit()
+        }
+
+
     }
 }
 

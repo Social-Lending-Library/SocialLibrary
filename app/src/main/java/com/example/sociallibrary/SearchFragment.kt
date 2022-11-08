@@ -189,11 +189,6 @@ class SearchFragment : Fragment() {
                 continue
             }
 
-
-            Log.v("books custom parser", link.toString())
-            Log.v("books title", title.toString())
-            Log.v("books author", author)
-            Log.v("books image", image)
             val newBook:Book = Book(title, author, link, image, description)
             parsedBooks.add(newBook)
         }
