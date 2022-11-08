@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,7 @@ class BookSearchRVAdapter(
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.fragment_search_book, parent, false)
+
             return BookViewHolder(view)
         }
 
@@ -33,7 +35,8 @@ class BookSearchRVAdapter(
             val mBookTitle: TextView = mView.findViewById<View>(id.book_title) as TextView
             val mBookAuthor: TextView = mView.findViewById<View>(id.book_author) as TextView
             val mBookImage: ImageView = mView.findViewById<View>(id.book_image) as ImageView
-
+            val mLibraryButton: Button = mView.findViewById<View>(id.btnAddToLibrary) as Button
+            val mReadingButton: Button = mView.findViewById<View>(id.btnCurrentlyReading) as Button
             override fun toString(): String {
                 return mBookTitle.toString() + " '" + mBookAuthor.text + "'"
             }
@@ -44,7 +47,8 @@ class BookSearchRVAdapter(
          */
         override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
             val book = books[position]
-
+            holder.mReadingButton.visibility = View.GONE
+            holder.mLibraryButton.visibility = View.GONE
             holder.mItem = book
             holder.mBookTitle.text = book.title
             holder.mBookAuthor.text = book.author

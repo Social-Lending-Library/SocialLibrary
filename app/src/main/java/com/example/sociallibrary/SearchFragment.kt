@@ -204,7 +204,7 @@ class SearchFragment : Fragment() {
         val transaction = activity?.supportFragmentManager?.beginTransaction()
         if (transaction != null) {
             transaction.replace(R.id.rlContainer, BookDetailFragment.newInstance(book, user))
-            transaction.disallowAddToBackStack()
+            transaction.addToBackStack("searchFragment")
             transaction.commit()
         }
 

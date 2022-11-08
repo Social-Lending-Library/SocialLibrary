@@ -64,6 +64,18 @@
         />
 
     <Button
+        android:id="@+id/btnAddToLibrary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/book_description_detail"
+        app:layout_constraintEnd_toStartOf="@id/btnAddToList"
+        app:layout_constraintStart_toEndOf="@id/btnBookBack"
+        android:layout_marginTop="12dp"
+        android:visibility="visible"
+        android:text="Add to Library"
+        android:textSize="12dp"
+        />
+    <Button
         android:id="@+id/btnAddToList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,6 +83,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="12dp"
         android:text="Add to List"
+        android:textSize="12dp"
+        />
+    <Button
+        android:id="@+id/btnCurrentlyReading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddToList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"
+        android:text="Mark as Currently Reading"
         android:textSize="12dp"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
