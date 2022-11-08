@@ -1,11 +1,21 @@
 package com.example.sociallibrary
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.Button
+import android.widget.EditText
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.parse.ParseObject
+import com.parse.ParseException
+import com.parse.ParseQuery
+import com.parse.ParseUser
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,9 +49,25 @@ class MyLibraryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_library, container, false)
+        // Change this statement to store the view in a variable instead of a return statement
+        val view = inflater.inflate(R.layout.fragment_my_library, container, false)
+        val recyclerView = view.findViewById<View>(R.id.rvMyBooks) as RecyclerView
+        val searchButton = view.findViewById<Button>(R.id.btnMyLists)
+        recyclerView.layoutManager = GridLayoutManager(context, 1)
+        return view
     }
+
+    private fun updateAdapter(recyclerView: RecyclerView, searchParams:String) {
+        Log.v("book SEARCH PARAMS", searchParams.toString())
+        val bundle = arguments
+        val user = bundle?.getString("userObjectId")
+        val query = ParseQuery<ParseObject>("Book")
+        query.whereEqualTo("ownerObjectId", user.toString())
+        Log.v("book query", query.toString())
+
+        }
+
+
 
     companion object {
         /**

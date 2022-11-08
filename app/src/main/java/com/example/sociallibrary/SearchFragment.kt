@@ -24,6 +24,7 @@ import org.json.JSONObject
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+private const val USER = "user"
 
 /**
  * A simple [Fragment] subclass.
@@ -69,7 +70,8 @@ class SearchFragment : Fragment() {
 
     private fun updateAdapter(recyclerView: RecyclerView, searchParams:String){
             Log.v("book SEARCH PARAMS", searchParams.toString())
-
+            val bundle = arguments
+            val user = bundle?.getString("userObjectId")
             // Create and set up an AsyncHTTPClient() here
             val client = AsyncHttpClient()
             val params = RequestParams()
@@ -200,12 +202,13 @@ class SearchFragment : Fragment() {
 
     fun onItemClick(book: Book) {
         Toast.makeText(context, "test: " + book.title, Toast.LENGTH_LONG).show()
-        val bookDetail = BookDetailFragment.newInstance(book)
 
+        val bundle = arguments
+        val user = bundle?.getString("userObjectId").toString()
+        val bookDetail = BookDetailFragment.newInstance(book, user)
         val transaction = activity?.supportFragmentManager?.beginTransaction()
         if (transaction != null) {
-            Log.v("bookDetails", "replacing")
-            transaction.replace(R.id.rlContainer, BookDetailFragment.newInstance(book))
+            transaction.replace(R.id.rlContainer, BookDetailFragment.newInstance(book, user))
             transaction.disallowAddToBackStack()
             transaction.commit()
         }

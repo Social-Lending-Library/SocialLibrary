@@ -48,7 +48,6 @@ class BookSearchRVAdapter(
             holder.mItem = book
             holder.mBookTitle.text = book.title
             holder.mBookAuthor.text = book.author
-            Log.v("Glide image", book.image)
             Glide.with(holder.mView)
                 .load(book.image)
                 .centerInside()
