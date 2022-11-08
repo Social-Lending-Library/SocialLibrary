@@ -47,6 +47,7 @@ class BookDetailFragment (): Fragment()  {
         val image = bundle?.getString("image")
         val user = bundle?.getString("userObjectId")
         val source = bundle?.getString("source")
+        val checkedOut = bundle?.getBoolean("checkedOut")
         // Need the user's key to support reading list additions
         Log.v("book User from result", user.toString())
         val titleTextView = view.findViewById<TextView>(R.id.book_title_detail)
@@ -54,7 +55,7 @@ class BookDetailFragment (): Fragment()  {
         val descriptionTextView = view.findViewById<TextView>(R.id.book_description_detail)
         val imageView = view.findViewById<ImageView>(R.id.book_image_detail)
 
-        val addToLibraryButton: Button = view.findViewById<View>(R.id.btnAddToLibrary) as Button
+        val btnAddToLibrary: Button = view.findViewById<View>(R.id.btnAddToLibrary) as Button
         val setReadingButton: Button = view.findViewById<View>(R.id.btnCurrentlyReading) as Button
         val btnAddToList: Button = view.findViewById<View>(R.id.btnReadingLists) as Button
         val libraryFlag: TextView = view.findViewById<TextView>(R.id.tvLibraryFlag)
@@ -65,7 +66,7 @@ class BookDetailFragment (): Fragment()  {
             libraryFlag.visibility = View.VISIBLE
         }
         else if (source.equals("search")){
-            addToLibraryButton.visibility = View.VISIBLE
+            btnAddToLibrary.visibility = View.VISIBLE
         }
 
         titleTextView.text = title
@@ -82,6 +83,36 @@ class BookDetailFragment (): Fragment()  {
             }
         }
 
+        btnAddToLibrary.setOnClickListener{
+            val bundle = arguments
+            val user = bundle?.getString("userObjectId")
+            val newBook = ParseObject("Book")
+            if (user != null) {
+                newBook.put("ownerObjectId", user)
+            }
+            if (title != null) {
+                newBook.put("Title", title)
+            }
+            if (author != null) {
+                newBook.put("Author", author)
+            }
+            if (checkedOut != null) {
+                newBook.put("checkedOut", checkedOut)
+            }
+            if (image != null) {
+                newBook.put("imageUrl", image)
+            }
+            if (description != null) {
+                newBook.put("Description", description)
+            }
+
+            newBook.saveInBackground()
+            val fragmentManager = activity?.supportFragmentManager
+            if (fragmentManager != null) {
+                fragmentManager.popBackStack()
+            }
+
+        }
         btnAddToList.setOnClickListener{
             val bundle = arguments
             val user = bundle?.getString("userObjectId")
@@ -151,6 +182,7 @@ class BookDetailFragment (): Fragment()  {
             }
 
         }
+
         // Inflate the layout for this fragment
         return view
     }

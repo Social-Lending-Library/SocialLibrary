@@ -50,7 +50,10 @@ class MyLibraryFragment : Fragment() {
         // Change this statement to store the view in a variable instead of a return statement
         val view = inflater.inflate(R.layout.fragment_my_library, container, false)
         val recyclerView = view.findViewById<View>(R.id.rvMyBooks) as RecyclerView
-        val searchButton = view.findViewById<Button>(R.id.btnMyLists)
+        val btnMyLists = view.findViewById<Button>(R.id.btnMyLists)
+        btnMyLists.setOnClickListener{
+            Log.v("library", "button pushed")
+        }
         recyclerView.layoutManager = GridLayoutManager(context, 2)
 
         updateAdapter(recyclerView)
@@ -70,7 +73,6 @@ class MyLibraryFragment : Fragment() {
         /*getBooks.findInBackground(
         ) { obj, e ->
             if (e == null) {
-                // TODO write adapter, plug the results in. MutableList
                 Log.v("book testing", obj.get(0).get("Author").toString())
             } else {
                 Log.v("OH NO", "UGH")
