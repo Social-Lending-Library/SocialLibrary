@@ -6,6 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.parse.ParseException
+import com.parse.ParseObject
+import com.parse.ParseQuery
+import com.parse.ParseUser
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,12 +31,17 @@ class ProfileFragment : Fragment() {
         // Gets userObjectId from MainActivity into this Fragment
         val userObjectId = requireArguments().getString("userObjectId", "None")
         Log.i("Daniel", "The Profile Fragment has userObjectID " + userObjectId.toString())
+        val getUserInfo = ParseQuery<ParseObject>("_User")
+        try {
+            //val userInfo = getUserInfo.find()
+            val userInfoTest = getUserInfo[userObjectId]
+            Log.v("profile key", userInfoTest.get("firstName").toString())
+        }
+        catch (e: ParseException){
+                Log.v("profile error" , "error querying user table: $e")
+            }
 
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
