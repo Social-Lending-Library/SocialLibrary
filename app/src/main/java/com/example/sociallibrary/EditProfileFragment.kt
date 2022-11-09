@@ -13,6 +13,8 @@ import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseUser
 
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
@@ -21,15 +23,15 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ProfileFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ProfileFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
+class EditProfileFragment : Fragment() {
+    // TODO: Rename and change types of parameters
+    private var userObjectIdOrig: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         // Gets userObjectId from MainActivity into this Fragment
         val userObjectId = requireArguments().getString("userObjectId", "None")
-        //Log.i("Daniel", "The Profile Fragment has userObjectID " + userObjectId.toString())
+        Log.i("user id", "The Profile Fragment has userObjectID " + userObjectId.toString())
 
         super.onCreate(savedInstanceState)
     }
@@ -38,61 +40,33 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        val view = inflater.inflate(R.layout.fragment_edit_profile, container, false)
         val bundle = arguments
         // Gets userObjectId from MainActivity into this Fragment
         val userObjectId = requireArguments().getString("userObjectId", "None")
-        Log.i("Daniel", "The Profile Fragment has userObjectID " + userObjectId.toString())
+        Log.i("profile edit", "The Profile Fragment has userObjectID " + userObjectId.toString())
 
         val getUserInfo = ParseQuery<ParseObject>("_User")
         try {
             //val userInfo = getUserInfo.find()
             val userInfoTest = getUserInfo[userObjectId]
             Log.v("profile name", userInfoTest.get("firstName").toString())
-            val firstName = view.findViewById<TextView>(R.id.tvProfileName)
-            firstName.text = userInfoTest.get("firstName").toString()
-            val blurb = view.findViewById<TextView>(R.id.tvAboutMe)
-            blurb.text = userInfoTest.get("aboutMe").toString()
-
-
         }
         catch (e: ParseException){
             Log.v("profile error" , "error querying user table: $e")
         }
-
-        val editButton = view.findViewById<ImageButton>(R.id.ibEditProfile)
-        editButton.setOnClickListener(){
-
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            if (transaction != null) {
-                transaction.replace(R.id.rlContainer, EditProfileFragment.newInstance(userObjectId))
-                transaction.addToBackStack(null)
-                transaction.commit()
-            }
-        }
-
-
 
         // Inflate the layout for this fragment
         return view
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
+        fun newInstance(userObjectId:String) =
+            EditProfileFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString("userObjectId", userObjectId)
                 }
             }
     }
