@@ -26,6 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:text="Name"
         android:layout_height="30dp"
+        android:layout_marginStart="20dp"
         android:textSize="18dp"
         android:gravity="center" />
     <EditText
@@ -50,6 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:text="Email"
         android:layout_height="30dp"
+        android:layout_marginStart="20dp"
         android:textSize="18dp"
         android:gravity="center" />
     <EditText
@@ -74,6 +76,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:text="About Me"
         android:layout_height="30dp"
+        android:layout_marginStart="20dp"
         android:textSize="18dp"
         android:gravity="center" />
     <EditText
