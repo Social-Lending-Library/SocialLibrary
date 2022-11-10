@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.parse.ParseException
@@ -51,16 +52,21 @@ class PeopleFragment : Fragment() {
         //  user_id.text = userObjectId
         val bookInfo = ParseQuery<ParseObject>("Book")
         val title = inputData.get("currentlyReading").toString()
-        Log.v("OH NO" , title)
-        Log.v("object id" , inputData.objectId.toString() )
+     //   Log.v("OH NO" , title)
+     //   Log.v("object id" , inputData.objectId.toString() )
+
+        val backButton = view.findViewById<Button>(R.id.btnReturn)
+        backButton.setOnClickListener {
+
+            val fragmentManager = activity?.supportFragmentManager
+            if (fragmentManager != null) {
+                fragmentManager.popBackStack()
+            }
+        }
         val imageView = view.findViewById<ImageView>(R.id.ivCurrentlyReading)
         if (title != null && title != "null"){
             bookInfo.whereEqualTo("ownerObjectId",inputData.objectId.toString() )
             bookInfo.whereEqualTo("Title", title)
-            //    val thisBook = bookInfo.find()[0]
-            // Log.v("OH NO" , thisBook)
-            //    val imageUrl = thisBook.get("imageUrl").toString()
-            //  Picasso.get().load(imageUrl).into(imageView);
             try {
                 val thisBook = bookInfo.find()[0]
                 val imageUrl = thisBook.get("imageUrl").toString()
