@@ -127,10 +127,10 @@ class MyLibraryFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance() =
+        fun newInstance(userObjectId:String) =
             MyLibraryFragment().apply {
                 arguments = Bundle().apply {
-
+                    putString("userObjectId", userObjectId)
                 }
             }
     }

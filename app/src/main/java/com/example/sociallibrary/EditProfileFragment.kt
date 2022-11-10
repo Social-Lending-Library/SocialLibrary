@@ -123,7 +123,7 @@ class EditProfileFragment : Fragment() {
         libraryButton.setOnClickListener(){
             val transaction = activity?.supportFragmentManager?.beginTransaction()
             if (transaction != null) {
-                transaction.replace(R.id.rlContainer, MyLibraryFragment.newInstance())
+                transaction.replace(R.id.rlContainer, MyLibraryFragment.newInstance(userObjectId))
                 transaction.disallowAddToBackStack()
                 transaction.commit()
             }

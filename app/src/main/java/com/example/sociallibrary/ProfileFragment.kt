@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -86,6 +87,16 @@ class ProfileFragment : Fragment() {
             if (transaction != null) {
                 transaction.replace(R.id.rlContainer, EditProfileFragment.newInstance(userObjectId))
                 transaction.addToBackStack(null)
+                transaction.commit()
+            }
+        }
+
+        val myLibraryButton = view.findViewById<Button>(R.id.btnViewMyLibrary)
+        myLibraryButton.setOnClickListener(){
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            if (transaction != null) {
+                transaction.replace(R.id.rlContainer, MyLibraryFragment.newInstance(userObjectId))
+                transaction.disallowAddToBackStack()
                 transaction.commit()
             }
         }
