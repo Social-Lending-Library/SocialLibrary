@@ -73,9 +73,8 @@ class ResultAdapter(context: Context?, list: List<ParseObject>?) : RecyclerView.
              holder.details?.text = "Friend Count: " + profile.getInt("friendCount") + " Birthday: " + profile.getDate(
                  "birthDay"
              )*/
-            titleTextView.text = "Firstname: " + profile.getString("firstName")
-            abstractTextView.text =  "About me: " + profile.getString("aboutMe")
-
+            titleTextView.text = profile.getString("firstName").toString()
+            abstractTextView.text =  profile.getString("aboutMe").toString()
 
             val title = profile.get("currentlyReading").toString()
          //   Log.v("OH NO" , title)
@@ -83,10 +82,7 @@ class ResultAdapter(context: Context?, list: List<ParseObject>?) : RecyclerView.
             if (title != null && title != "null"){
                 bookInfo.whereEqualTo("ownerObjectId",profile.objectId.toString() )
                 bookInfo.whereEqualTo("Title", title)
-            //    val thisBook = bookInfo.find()[0]
-               // Log.v("OH NO" , thisBook)
-            //    val imageUrl = thisBook.get("imageUrl").toString()
-              //  Picasso.get().load(imageUrl).into(imageView);
+
                try {
                     val thisBook = bookInfo.find()[0]
                     val imageUrl = thisBook.get("imageUrl").toString()
