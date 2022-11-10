@@ -1,12 +1,17 @@
 package com.example.sociallibrary
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.parse.ParseException
 import com.parse.ParseObject
+import com.parse.ParseQuery
+import com.squareup.picasso.Picasso
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,12 +42,33 @@ class PeopleFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_people, container, false)
-        val textView = view.findViewById<TextView>(R.id.demo_f)
-        val user_id = view.findViewById<TextView>(R.id.user_id)
+        val profileName = view.findViewById<TextView>(R.id.tvProfileName)
+        val aboutMe = view.findViewById<TextView>(R.id.tvAboutMe)
         val args = this.arguments
         val inputData = args?.get("title") as ParseObject
-        textView.text =  inputData.getString("password").toString()
+        profileName.text =  inputData.getString("firstName").toString()
+        aboutMe.text = inputData.getString("aboutMe").toString()
         //  user_id.text = userObjectId
+        val bookInfo = ParseQuery<ParseObject>("Book")
+        val title = inputData.get("currentlyReading").toString()
+        Log.v("OH NO" , title)
+        Log.v("object id" , inputData.objectId.toString() )
+        val imageView = view.findViewById<ImageView>(R.id.ivCurrentlyReading)
+        if (title != null && title != "null"){
+            bookInfo.whereEqualTo("ownerObjectId",inputData.objectId.toString() )
+            bookInfo.whereEqualTo("Title", title)
+            //    val thisBook = bookInfo.find()[0]
+            // Log.v("OH NO" , thisBook)
+            //    val imageUrl = thisBook.get("imageUrl").toString()
+            //  Picasso.get().load(imageUrl).into(imageView);
+            try {
+                val thisBook = bookInfo.find()[0]
+                val imageUrl = thisBook.get("imageUrl").toString()
+                Picasso.get().load(imageUrl).into(imageView);
+            } catch (e: ParseException){
+                Log.v("OH NO" , "SUPER BAD")
+            }
+        }
         return view
     }
 

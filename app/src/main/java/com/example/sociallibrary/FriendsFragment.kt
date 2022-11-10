@@ -80,7 +80,7 @@ class FriendsFragment : Fragment() {
     }
 
     private fun doQueryByPeople() {
-        val query = ParseQuery<ParseObject>("User")
+        val query = ParseQuery<ParseObject>("_User")
         //query.whereGreaterThan("friendCount", 20)
         progressDialog!!.show()
 

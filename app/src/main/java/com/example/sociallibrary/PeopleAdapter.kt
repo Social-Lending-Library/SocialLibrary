@@ -2,14 +2,19 @@ package com.example.sociallibrary
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
+import com.parse.ParseException
 import com.parse.ParseObject
+import com.parse.ParseQuery
+import com.squareup.picasso.Picasso
 import java.util.ArrayList
 
 const val ARTICLE_EXTRA = "ARTICLE_EXTRA"
@@ -56,7 +61,8 @@ class ResultAdapter(context: Context?, list: List<ParseObject>?) : RecyclerView.
         //   private val mediaImageView = itemView.findViewById<ImageView>(R.id.mediaImage)
         private val titleTextView = itemView.findViewById<TextView>(R.id.name)
         private val abstractTextView = itemView.findViewById<TextView>(R.id.details)
-
+        private val imageView = itemView.findViewById<ImageView>(R.id.bookImage)
+        private val bookInfo = ParseQuery<ParseObject>("Book")
         init {
             itemView.setOnClickListener(this)
         }
@@ -67,8 +73,28 @@ class ResultAdapter(context: Context?, list: List<ParseObject>?) : RecyclerView.
              holder.details?.text = "Friend Count: " + profile.getInt("friendCount") + " Birthday: " + profile.getDate(
                  "birthDay"
              )*/
-            titleTextView.text = "Username: " + profile.getString("username")
-            abstractTextView.text =  "Email: " + profile.getString("email")
+            titleTextView.text = "Firstname: " + profile.getString("firstName")
+            abstractTextView.text =  "About me: " + profile.getString("aboutMe")
+
+
+            val title = profile.get("currentlyReading").toString()
+            Log.v("OH NO" , title)
+            Log.v("object id" , profile.objectId.toString() )
+            if (title != null && title != "null"){
+                bookInfo.whereEqualTo("ownerObjectId",profile.objectId.toString() )
+                bookInfo.whereEqualTo("Title", title)
+            //    val thisBook = bookInfo.find()[0]
+               // Log.v("OH NO" , thisBook)
+            //    val imageUrl = thisBook.get("imageUrl").toString()
+              //  Picasso.get().load(imageUrl).into(imageView);
+               try {
+                    val thisBook = bookInfo.find()[0]
+                    val imageUrl = thisBook.get("imageUrl").toString()
+                    Picasso.get().load(imageUrl).into(imageView);
+                } catch (e: ParseException){
+                    Log.v("OH NO" , "SUPER BAD")
+                }
+            }
             //       abstractTextView.text =  "Friend Count: " + profile.getInt("friendCount") + " Birthday: " + profile.getDate(
             //       "birthDay")
 /*
