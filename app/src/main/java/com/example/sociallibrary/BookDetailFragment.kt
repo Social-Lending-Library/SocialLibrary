@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.parse.Parse
 import com.parse.ParseException
 import com.parse.ParseObject
 import com.parse.ParseQuery
@@ -60,10 +61,23 @@ class BookDetailFragment (): Fragment()  {
         val btnAddToList: Button = view.findViewById<View>(R.id.btnReadingLists) as Button
         val libraryFlag: TextView = view.findViewById<TextView>(R.id.tvLibraryFlag)
 
+
         if (source.equals("library")){
             btnAddToList.visibility = View.VISIBLE
             setReadingButton.visibility = View.VISIBLE
             libraryFlag.visibility = View.VISIBLE
+            val getUserInfo = ParseQuery<ParseObject>("_User")
+            try {
+                val thisUser = getUserInfo[user]
+                setReadingButton.setOnClickListener(){
+                    if (title != null) {
+                        thisUser.put("currentlyReading", title)
+                        thisUser.saveInBackground()
+                    }
+                }
+            } catch (e: ParseException){
+                Log.v("book error" , "now reading failed")
+            }
         }
         else if (source.equals("search")){
             btnAddToLibrary.visibility = View.VISIBLE

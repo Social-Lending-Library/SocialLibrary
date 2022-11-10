@@ -7,11 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
+import com.parse.Parse
 import com.parse.ParseException
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseUser
+import com.squareup.picasso.Picasso
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -53,6 +56,22 @@ class ProfileFragment : Fragment() {
             firstName.text = userInfoTest.get("firstName").toString()
             val blurb = view.findViewById<TextView>(R.id.tvAboutMe)
             blurb.text = userInfoTest.get("aboutMe").toString()
+            val imageView = view.findViewById<ImageView>(R.id.ivCurrentlyReading)
+            // look up the book
+            val bookInfo = ParseQuery<ParseObject>("Book")
+            val title = userInfoTest.get("currentlyReading").toString()
+            if (title != null && title != "null"){
+                bookInfo.whereEqualTo("ownerObjectId", userObjectId)
+                bookInfo.whereEqualTo("Title", title)
+                try {
+                    val thisBook = bookInfo.find()[0]
+                    val imageUrl = thisBook.get("imageUrl").toString()
+                    Picasso.get().load(imageUrl).into(imageView);
+                } catch (e: ParseException){
+                    Log.v("OH NO" , "SUPER BAD")
+                }
+            }
+
 
 
         }
