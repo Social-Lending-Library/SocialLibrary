@@ -1,11 +1,26 @@
 # Milestone 1 - Group 7
 ## Table of Contents
 
-1. [Overview](#Overview)
-1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
+
+1. [Important Note for our Grader - Please Read!(#Note)
+2. [Demo Video] )#Demo-Video
+3. [Overview](#Overview)
+  1. [Progress Gif](#Progress-Gif)
+5. [Product Spec](#Product-Spec)
+6. [Original Wireframes](#Wireframes)
+
+## Note
+Our project board exists! It was marked as missing on the prevous milestone, but has existed from Day 1. (We emailed Support and did not receive a clear response so please find our board here.
+
+https://github.com/orgs/Social-Lending-Library/projects/2
+
+We were required to associate the repo with an org in the first milestone. Github has changed Project Board functionality; if a repo is associated with an org, the board is located the org level and *cannot be created* at the repo level. 
+
+## Demo Video
 
 ## Overview
+
+### Progress Gif
 
 ### Description
 
