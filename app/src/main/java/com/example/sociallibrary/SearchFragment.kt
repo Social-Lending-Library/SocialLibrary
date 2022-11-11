@@ -179,7 +179,14 @@ class SearchFragment : Fragment() {
                 e.printStackTrace()
                 continue
             }
-            val description = info["description"] as String
+            var description = ""
+            try {
+                description = info["description"] as String
+            }
+            catch (e: Exception) {
+                e.printStackTrace()
+                continue
+            }
 
             var image = ""
             try{
