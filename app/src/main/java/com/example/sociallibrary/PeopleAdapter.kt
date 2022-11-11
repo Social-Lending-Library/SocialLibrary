@@ -77,7 +77,8 @@ class ResultAdapter(context: Context?, list: List<ParseObject>?) : RecyclerView.
             abstractTextView.text =  profile.getString("aboutMe").toString()
 
             val title = profile.get("currentlyReading").toString()
-         //   Log.v("OH NO" , title)
+            Log.v("testing", title.toString())
+
            Log.v("object id" , profile.objectId.toString() )
             if (title != null && title != "null"){
                 bookInfo.whereEqualTo("ownerObjectId",profile.objectId.toString() )
