@@ -10,7 +10,7 @@
 6. [Original Wireframes](#Wireframes)
 
 ## Note for our Grader
-Our project board exists! It was marked as missing on the prevous milestone, but has existed from Day 1. (We emailed Support and did not receive a clear response so please find our board here.
+Our project board exists! It was marked as missing on the prevous milestone, but has existed from Day 1. Please find our board here.
 
 https://github.com/orgs/Social-Lending-Library/projects/2
 
