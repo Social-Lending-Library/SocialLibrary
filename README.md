@@ -2,14 +2,14 @@
 ## Table of Contents
 
 
-1. [Important Note for our Grader - Please Read!](#Note)
+1. [Important Note for our Grader - Please Read!](#Note-for-our-Grader)
 2. [Demo Video](#Demo-Video)
 3. [Overview](#Overview)
   1. [Video Walkthrough](#Video-Walkthrough)
 5. [Product Spec](#Product-Spec)
 6. [Original Wireframes](#Wireframes)
 
-## Note
+## Note for our Grader
 Our project board exists! It was marked as missing on the prevous milestone, but has existed from Day 1. (We emailed Support and did not receive a clear response so please find our board here.
 
 https://github.com/orgs/Social-Lending-Library/projects/2
