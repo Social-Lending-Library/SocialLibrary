@@ -2,8 +2,8 @@
 ## Table of Contents
 
 
-1. [Important Note for our Grader - Please Read!(#Note)
-2. [Demo Video] )#Demo-Video
+1. [Important Note for our Grader - Please Read!](#Note)
+2. [Demo Video](#Demo-Video)
 3. [Overview](#Overview)
   1. [Progress Gif](#Progress-Gif)
 5. [Product Spec](#Product-Spec)
