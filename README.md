@@ -5,7 +5,7 @@
 1. [Important Note for our Grader - Please Read!](#Note)
 2. [Demo Video](#Demo-Video)
 3. [Overview](#Overview)
-  1. [Progress Gif](#Progress-Gif)
+  1. [Video Walkthrough](#Video-Walkthrough)
 5. [Product Spec](#Product-Spec)
 6. [Original Wireframes](#Wireframes)
 
@@ -17,10 +17,18 @@ https://github.com/orgs/Social-Lending-Library/projects/2
 We were required to associate the repo with an org in the first milestone. Github has changed Project Board functionality; if a repo is associated with an org, the board is located the org level and *cannot be created* at the repo level. 
 
 ## Demo Video
+https://user-images.githubusercontent.com/71856754/201435257-4fb9a5bb-1786-44a9-aff3-14e23e0682e6.mp4
+
+### Alternate Link:
+[Demo Video on Youtube](https://www.youtube.com/watch?v=OFMdhMB8BuU)
 
 ## Overview
 
-### Progress Gif
+### Video Walkthrough
+Here's a walkthrough of implemented user stories:
+
+<img src='sociallibrary.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+GIF created with [LiceCap](http://www.cockos.com/licecap/)
 
 ### Description
 
@@ -150,6 +158,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/)
 <img src="https://github.com/steelemeg/SocialLibrary/blob/main/interactive_wireframe.gif">
 
 <img src="https://github.com/steelemeg/SocialLibrary/blob/main/book_sm_app_mockup.png" width=600>
+GIFs created with [LiceCap](http://www.cockos.com/licecap/)
 
 ### [BONUS] Digital Wireframes & Mockups 
 Completed - see above!
