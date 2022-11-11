@@ -1,21 +1,11 @@
 package com.example.sociallibrary
 
-import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.parse.ParseException
-import com.parse.ParseObject
-import com.parse.ParseQuery
 
 /**
  * A simple [Fragment] subclass.
@@ -23,17 +13,6 @@ import com.parse.ParseQuery
  * create an instance of this fragment.
  */
 class FriendsFragment : Fragment() {
-
-    private var resultList: RecyclerView? = null
-    private var adapter: ResultAdapter? = null
-    /* private var queryByName: Button? = null
-     private var queryByFriendCount: Button? = null
-     private var queryByOrdering: Button? = null
-     private var queryByAll: Button? = null
-     private var clearResults: Button? = null
-
-     */
-    private var progressDialog: ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

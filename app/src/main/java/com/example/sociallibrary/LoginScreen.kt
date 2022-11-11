@@ -1,9 +1,11 @@
 package com.example.sociallibrary
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -32,7 +34,6 @@ class LoginScreen : AppCompatActivity() {
 
         var loginButton = findViewById<Button>(R.id.loginButton)
         loginButton.setOnClickListener {
-
 
             username = usernameET.text.toString()
             password = passwordET.text.toString()
@@ -72,4 +73,5 @@ class LoginScreen : AppCompatActivity() {
         }
     }
 }
+
 
