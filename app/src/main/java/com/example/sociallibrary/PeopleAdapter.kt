@@ -78,7 +78,7 @@ class ResultAdapter(context: Context?, list: List<ParseObject>?) : RecyclerView.
 
             val title = profile.get("currentlyReading").toString()
          //   Log.v("OH NO" , title)
-         //   Log.v("object id" , profile.objectId.toString() )
+           Log.v("object id" , profile.objectId.toString() )
             if (title != null && title != "null"){
                 bookInfo.whereEqualTo("ownerObjectId",profile.objectId.toString() )
                 bookInfo.whereEqualTo("Title", title)
@@ -86,11 +86,16 @@ class ResultAdapter(context: Context?, list: List<ParseObject>?) : RecyclerView.
                try {
                     val thisBook = bookInfo.find()[0]
                     val imageUrl = thisBook.get("imageUrl").toString()
+                   Log.v("Image :" , imageUrl )
                     Picasso.get().load(imageUrl).into(imageView);
                 } catch (e: ParseException){
                     Log.v("OH NO" , "SUPER BAD")
                 }
+            }else{
+                Log.v("UPLOADING IMG" , "FF")
+                Picasso.get().load("https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/495px-No-Image-Placeholder.svg.png").into(imageView);
             }
+
             //       abstractTextView.text =  "Friend Count: " + profile.getInt("friendCount") + " Birthday: " + profile.getDate(
             //       "birthDay")
 /*

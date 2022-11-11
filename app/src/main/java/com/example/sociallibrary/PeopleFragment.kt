@@ -74,6 +74,15 @@ class PeopleFragment : Fragment() {
             } catch (e: ParseException){
                 Log.v("OH NO" , "SUPER BAD")
             }
+        }else{
+            Log.v("UPLOADING IMG" , "FF")
+            Picasso.get().load("https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/495px-No-Image-Placeholder.svg.png").into(imageView);
+        }
+
+        val addFriend = view.findViewById<Button>(R.id.btnAddFriend)
+        addFriend.setOnClickListener{
+            Log.v("BUTTON" , "CLICK ADD FRIENDS")
+
         }
         return view
     }

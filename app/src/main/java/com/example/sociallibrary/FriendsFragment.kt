@@ -58,7 +58,10 @@ class FriendsFragment : Fragment() {
         progressDialog = ProgressDialog(activity)
         //var adapter: ResultAdapter? = null
         val a = "People".toString()
-        queryByPeople?.setOnClickListener(View.OnClickListener { view: View? -> doQueryByPeople(); titleQuery.text = "People" })
+        val userObjectId = requireArguments().getString("userObjectId", "None")
+        Log.i("Daniel", "The Friends Fragment has the userObjectID " + userObjectId.toString())
+     //   Log.v("USER OBJECT ID" , userObjectId)
+        queryByPeople?.setOnClickListener(View.OnClickListener { view: View? -> doQueryByPeople(userObjectId); titleQuery.text = "People" })
         //   queryByOrdering?.setOnClickListener(View.OnClickListener { view: View? -> doQueryByOrdering() })
         //   queryByAll?.setOnClickListener(View.OnClickListener { view: View? -> doQueryByAll() })
         //    clearResults?.setOnClickListener(View.OnClickListener { view: View? -> adapter?.clearList() })
@@ -79,8 +82,9 @@ class FriendsFragment : Fragment() {
         return view
     }
 
-    private fun doQueryByPeople() {
+    private fun doQueryByPeople(userObjectId: String) {
         val query = ParseQuery<ParseObject>("_User")
+        query.whereNotEqualTo("objectId",userObjectId)
         //query.whereGreaterThan("friendCount", 20)
         progressDialog!!.show()
 
